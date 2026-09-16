@@ -1,0 +1,17 @@
+services:
+  qbit-auto-reannounce:
+    build:
+      context: .
+    container_name: qbit-auto-reannounce
+    env_file:
+      - .env
+    environment:
+      QBIT_STATE: /data/qbit_reannounce_state.json
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    volumes:
+      - qbit-auto-reannounce-data:/data
+
+volumes:
+  qbit-auto-reannounce-data:
